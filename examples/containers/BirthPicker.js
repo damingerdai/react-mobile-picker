@@ -107,7 +107,7 @@ export default class BirthPicker extends Component {
           <div className={pickerModalClass}>
             <header>
               <div className="title">Choose your birthdate</div>
-              <a href="javascript:;" onClick={this.togglePicker}>OK</a>
+              <a href="#" onClick={this.togglePicker}>OK</a>
             </header>
             <Picker
              optionGroups={optionGroups}

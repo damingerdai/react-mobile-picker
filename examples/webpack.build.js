@@ -13,8 +13,21 @@ module.exports = {
 
   module: {
     loaders: [
-      {test: /\.js$/, exclude: /node_modules/, loader: 'babel'},
-      {test: /\.less$/, loader: 'style!css!autoprefixer!less'}
+      {
+        test: /\.js?$/,
+        exclude: /(node_modules|dist)/,
+        loader: 'babel-loader',
+        
+      },
+      {
+        test: /\.less$/i,
+        use: [
+          // compiles Less to CSS
+          'style-loader',
+          'css-loader',
+          'less-loader',
+        ],
+      },
     ]
   },
 
@@ -25,7 +38,7 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"'
