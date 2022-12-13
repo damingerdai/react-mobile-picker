@@ -1,0 +1,38 @@
+{
+    "name": "dev-app",
+    "version": "0.2.0",
+    "scripts": {
+        "clean": "rimraf dist",
+        "start": "node examples/server.js",
+        "start2": "webpack serve --config examples/webpack.config.js",
+        "lint": "eslint src",
+        "build-examples": "rimraf examples/dist && set NODE_ENV=production && webpack --progress --config examples/webpack.config.js",
+        "build": "rimraf dist && webpack --config webpack.config.js",
+        "test": "yarn lint"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.20.5",
+        "@babel/plugin-transform-runtime": "^7.19.6",
+        "@babel/preset-env": "^7.20.2",
+        "@babel/preset-react": "^7.18.6",
+        "@hot-loader/react-dom": "^17.0.2",
+        "autoprefixer-loader": "^3.1.0",
+        "babel-loader": "^8.2.5",
+        "css-loader": "^6.7.2",
+        "html-webpack-plugin": "^5.5.0",
+        "less": "^4.1.3",
+        "less-loader": "^11.1.0",
+        "mini-css-extract-plugin": "^2.7.2",
+        "react": "^16.8.0",
+        "react-dom": "^16.8.0",
+        "react-hot-loader": "^4.13.1",
+        "redbox-react": "^1.2.0",
+        "rimraf": "^2.4.4",
+        "style-loader": "^3.3.1",
+        "webpack": "^5.75.0",
+        "webpack-cli": "^5.0.1",
+        "webpack-dev-middleware": "^1.4.0",
+        "webpack-dev-server": "^4.11.1",
+        "webpack-hot-middleware": "^2.6.0"
+    }
+}
