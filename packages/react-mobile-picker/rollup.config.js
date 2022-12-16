@@ -9,15 +9,10 @@ import less from 'rollup-plugin-less';
 import pkg from './package.json';
 
 const babelOptions = {
-    'presets': [
-      '@babel/preset-env',
-      '@babel/preset-react'
-    ],
-    'babelHelpers': 'runtime',
-    'plugins': [
-        '@babel/plugin-transform-runtime'
-    ]
-  }
+  presets: ['@babel/preset-env', '@babel/preset-react'],
+  babelHelpers: 'runtime',
+  plugins: ['@babel/plugin-transform-runtime'],
+};
 
 export default [
   {
@@ -28,19 +23,20 @@ export default [
         format: 'cjs',
         sourcemap: false,
         name: 'reactMobilePicker',
-        exports: 'default'
-      }
+        exports: 'default',
+      },
     ],
     plugins: [
       external(),
       resolve(),
       babel(babelOptions),
       commonjs(),
-      less({
-        output: path.join(__dirname, 'dist', 'index.css')
-      })
+      styles(),
+      // less({
+      //   output: path.join(__dirname, 'dist', 'index.css'),
+      // }),
     ],
-    external: ['react', 'react-dom', 'prop-types']
+    external: ['react', 'react-dom', 'prop-types'],
   },
   {
     input: 'src/index.js',
@@ -49,7 +45,7 @@ export default [
         file: pkg.module,
         format: 'esm',
         sourcemap: false,
-        exports: 'default'
+        exports: 'default',
       },
     ],
     plugins: [
@@ -57,11 +53,12 @@ export default [
       resolve(),
       babel(babelOptions),
       commonjs(),
-      less({
-        output: path.join(__dirname, 'dist', 'index.css')
-      })
+      styles(),
+      // less({
+      //   output: path.join(__dirname, 'dist', 'index.css'),
+      // }),
     ],
-    external: ['react', 'react-dom', 'prop-types']
+    external: ['react', 'react-dom', 'prop-types'],
   },
   {
     input: 'src/index.js',
@@ -73,11 +70,11 @@ export default [
         name: 'reactMobilePicker',
         exports: 'default',
         globals: {
-            'react': 'React',
-            'react-dom': 'ReactDOM',
-            'prop-types': 'PropTypes'
+          react: 'React',
+          'react-dom': 'ReactDOM',
+          'prop-types': 'PropTypes',
         },
-      }
+      },
     ],
     plugins: [
       external(),
@@ -85,10 +82,10 @@ export default [
       babel(babelOptions),
       commonjs(),
       less({
-        output: path.join(__dirname, 'dist', 'index.css')
+        output: path.join(__dirname, 'dist', 'index.css'),
       }),
-      terser()
+      terser(),
     ],
-    external: ['react', 'react-dom']
+    external: ['react', 'react-dom'],
   },
 ];

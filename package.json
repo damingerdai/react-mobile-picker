@@ -1,5 +1,5 @@
 {
-  "name": "react-mobile-picker",
+  "name": "rootr",
   "version": "0.2.0",
   "description": "An iOS like select box component for React",
   "main": "dist/index.cjs",
@@ -11,6 +11,11 @@
     "type": "git",
     "url": "adcentury/react-mobile-picker"
   },
+  "author": {
+    "name": "Lei Lei",
+    "email": "adcentury100@gmail.com"
+  },
+  "license": "MIT",
   "private": true,
   "workspaces": [
     "packages",
@@ -19,40 +24,12 @@
   "dependencies": {
     "prop-types": "^15.6.0"
   },
-  "files": [
-    "LICENCE",
-    "README.md",
-    "src",
-    "lib"
-  ],
-  "keywords": [
-    "react",
-    "react mobile picker",
-    "mobile picker",
-    "picker",
-    "react-component",
-    "react components",
-    "react ui",
-    "mobile ui"
-  ],
   "scripts": {
-    "clean": "rimraf lib",
-    "start": "node examples/server.js",
-    "start2": "webpack serve --config examples/webpack.config.js",
-    "lint": "eslint src",
-    "build-examples": "rimraf examples/dist && set NODE_ENV=production && webpack --progress --config examples/webpack.config.js",
-    "build": "yarn clean && yarn lint && set NODE_ENV=production && webpack --progress --hide-modules --config webpack.build.js",
-    "build2": "rimraf dist && rollup --config",
-    "test": "yarn lint"
-  },
-  "author": {
-    "name": "Lei Lei",
-    "email": "adcentury100@gmail.com"
-  },
-  "license": "MIT",
-  "peerDependencies": {
-    "react": ">=0.14.0 <18.0.0",
-    "react-dom": ">=0.14.0 <18.0.0"
+    "clean": "rimraf packages/**/dist/",
+    "lint": "eslint packages",
+    "start": "yarn workspace dev-app start",
+    "build": "yarn clean && yarn workspace react-mobile-picker build",
+    "build2": "rimraf dist && rollup --config"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
@@ -66,6 +43,7 @@
     "autoprefixer-loader": "^3.1.0",
     "babel-loader": "^8.2.5",
     "css-loader": "^6.7.2",
+    "css-minimizer-webpack-plugin": "^4.2.2",
     "eslint": "^1.10.3",
     "eslint-plugin-babel": "^3.0.0",
     "eslint-plugin-react": "^3.11.3",
@@ -93,5 +71,5 @@
     "webpack-dev-middleware": "^1.4.0",
     "webpack-dev-server": "^4.11.1",
     "webpack-hot-middleware": "^2.6.0"
-  } 
+  }
 }

@@ -11,7 +11,7 @@
         "LICENCE",
         "README.md",
         "src",
-        "lib"
+        "dist"
     ],
     "keywords": [
         "react",
@@ -29,13 +29,9 @@
     },
     "license": "MIT",
     "scripts": {
-        "clean": "rimraf lib",
-        "start": "node examples/server.js",
-        "start2": "webpack serve --config examples/webpack.config.js",
+        "clean": "rimraf dist",
         "lint": "eslint src",
-        "build-examples": "rimraf examples/dist && set NODE_ENV=production && webpack --progress --config examples/webpack.config.js",
-        "build": "rimraf dist && rollup --config",
-        "test": "yarn lint"
+        "build": "rimraf dist && rollup --config"
     },
     "dependencies": {
         "prop-types": "^15.6.0"

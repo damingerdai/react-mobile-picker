@@ -2,46 +2,37 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-console.log(path.join(__dirname, '..', 'react-mobile-picker'), path.join(__dirname), path.join(__dirname, 'index.html'));
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
-  entry: [
-    path.join(__dirname, 'src', 'main.js')
-  ],
+  mode: process.env.NODE_ENV,
+  entry: [path.join(__dirname, 'src', 'main.js')],
   devServer: {
     static: {
       directory: path.join(__dirname),
-    }
+    },
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   output: {
-    filename: 'bundle.[hash].js'
+    filename: 'main.[hash].js',
   },
   module: {
     rules: [
       {
         test: /\.js?$/,
         exclude: /(node_modules|dist)/,
-        use: [
-          'babel-loader',
-          // {
-          //   loader: 'babel-loader',
-          //   options: {
-          //     presets: ['@babel/preset-env','@babel/preset-react'],
-          //     plugins: ['@babel/plugin-syntax-dynamic-import', '@babel/plugin-proposal-class-properties']
-          //  }
-          // }
-        ]
+        use: ['babel-loader'],
       },
       {
-        test: /\.css$/i,
+        test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader,
-          // compiles Less to CSS
-          'style-loader',
-          'css-loader',
+          {
+            loader: MiniCssExtractPlugin.loader,
+          },
+          {
+            loader: 'css-loader',
+          },
         ],
       },
       {
@@ -50,39 +41,59 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
           },
-          {
-            loader: "css-loader",
-            options: {
-              sourceMap: true,
-              modules: true
-            }
-          },
           // {
-          //   loader: "style-loader"
+          //   loader: 'style-loader'
           // },
           {
-            loader: "less-loader"
-          }
-        ]
-      }
-    ]
+            loader: 'css-loader',
+          },
+          {
+            loader: 'less-loader',
+          },
+        ],
+      },
+    ],
   },
   resolve: {
     alias: {
       'react-mobile-picker': path.join(__dirname, '..', 'react-mobile-picker'),
       'react-dom': '@hot-loader/react-dom',
-    }
+    },
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      template:  path.join(__dirname, 'public', 'index.html')
+      template: path.join(__dirname, 'public', 'index.html'),
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[hash].css',
-      chunkFilename: '[id].[hash].css',
-    })
-    // new webpack.HotModuleReplacementPlugin(),
-    // new webpack.NoErrorsPlugin()
-  ]
+      filename: 'styles.[hash].css',
+    }),
+  ],
+  optimization: {
+    minimize:  process.env.NODE_ENV === 'production',
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          parse: {
+            ecma: 8,
+          },
+          compress: {
+            ecma: 5,
+            warnings: false,
+            comparisons: false,
+            inline: 2,
+          },
+          mangle: {
+            safari10: true,
+          },
+          output: {
+            ecma: 5,
+            comments: false,
+            ascii_only: true,
+          },
+        },
+      }),
+      new CssMinimizerPlugin(),
+    ],
+  },
 };

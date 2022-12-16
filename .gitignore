@@ -2,6 +2,9 @@
 node_modules
 bower_components
 npm-debug.log
+packages/**/yarn-error.log
+yarn-error.log
 
 examples/dist
 dist/
+packages/**/dist
