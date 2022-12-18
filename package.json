@@ -1,19 +1,10 @@
 {
-  "name": "rootr",
+  "name": "root",
   "version": "0.2.0",
   "description": "An iOS like select box component for React",
-  "main": "dist/index.cjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "unpkg": "dist/index.min.js",
-  "sideEffects": false,
-  "repository": {
-    "type": "git",
-    "url": "adcentury/react-mobile-picker"
-  },
   "author": {
-    "name": "Lei Lei",
-    "email": "adcentury100@gmail.com"
+    "name": "Arthur Ming",
+    "email": "mingguobin@live.com"
   },
   "license": "MIT",
   "private": true,
@@ -28,8 +19,7 @@
     "clean": "rimraf packages/**/dist/",
     "lint": "eslint packages",
     "start": "yarn workspace dev-app start",
-    "build": "yarn clean && yarn workspace react-mobile-picker build",
-    "build2": "rimraf dist && rollup --config"
+    "build": "yarn clean && yarn workspace react-mobile-picker build"
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
@@ -42,6 +32,7 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "autoprefixer-loader": "^3.1.0",
     "babel-loader": "^8.2.5",
+    "copyfiles": "^2.4.1",
     "css-loader": "^6.7.2",
     "css-minimizer-webpack-plugin": "^4.2.2",
     "eslint": "^1.10.3",

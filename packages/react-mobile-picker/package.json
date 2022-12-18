@@ -1,5 +1,5 @@
 {
-    "name": "react-mobile-picker",
+    "name": "@damingerdai/react-mobile-picker",
     "version": "0.2.0",
     "description": "An iOS like select box component for React",
     "main": "dist/index.cjs",
@@ -10,7 +10,6 @@
     "files": [
         "LICENCE",
         "README.md",
-        "src",
         "dist"
     ],
     "keywords": [
@@ -23,15 +22,21 @@
         "react ui",
         "mobile ui"
     ],
+    "repository": {
+        "type": "git",
+        "url": "damingerdai/react-mobile-picker"
+      },
     "author": {
-        "name": "Lei Lei",
-        "email": "adcentury100@gmail.com"
+        "name": "Arthur Ming",
+        "email": "mingguobin@live.com"
     },
     "license": "MIT",
+    "homepage": "https://github.com/damingerdai/ngx-is-standalone",
     "scripts": {
         "clean": "rimraf dist",
         "lint": "eslint src",
-        "build": "rimraf dist && rollup --config"
+        "build": "rimraf dist && rollup --config",
+        "cp": "copyfiles -f src/index.d.ts dist"
     },
     "dependencies": {
         "prop-types": "^15.6.0"
@@ -49,6 +54,7 @@
         "@rollup/plugin-babel": "^6.0.3",
         "@rollup/plugin-commonjs": "^22.0.1",
         "@rollup/plugin-node-resolve": "^13.3.0",
+        "copyfiles": "^2.4.1",
         "react": "^16.8.0",
         "react-dom": "^16.8.0",
         "react-hot-loader": "^4.13.1",
