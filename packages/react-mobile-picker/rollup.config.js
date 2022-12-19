@@ -32,9 +32,6 @@ export default [
       babel(babelOptions),
       commonjs(),
       styles(),
-      // less({
-      //   output: path.join(__dirname, 'dist', 'index.css'),
-      // }),
     ],
     external: ['react', 'react-dom', 'prop-types'],
   },
